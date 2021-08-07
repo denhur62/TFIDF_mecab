@@ -1,21 +1,11 @@
-import re
-import numpy as np
 from scipy.io import mmwrite,mmread
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
-from konlpy.tag import Mecab
 from PartitionFit import partial_fit
+from Tokenizer import tokenizer,stopwords
 # 추후 들어오는 데이터는 정규식을 통해 refine 할 것
 
 
-
-
-stopwords = ['아', '이', '애', '오']
-
-
-def tokenizer(raw, pos=["NNG", "NNP", "VV", "VA"], stopword=stopwords):
-    m = Mecab()
-    return [word for word, tag in m.pos(raw) if len(word) > 1 and tag in pos and word not in stopword]
 
 
 tf = TfidfVectorizer(
